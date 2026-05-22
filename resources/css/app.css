@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles for auth inputs */
+input[type="text"], input[type="email"], input[type="password"] {
+    background-color: rgba(31, 41, 55, 0.5) !important; /* Dark and semi-transparent */
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.75rem !important; /* Rounded corners */
+}
+
+input:focus {
+    border-color: #3b82f6 !important; /* Blue-500 focus */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important;
+}
+
+label {
+    color: #9ca3af !important; /* Gray-400 label text */
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    font-size: 0.75rem !important;
+}
+/* Professional Dark Mode Overrides */
+select, input {
+    color-scheme: dark;
+}
+
+select option {
+    background-color: #111827; /* Gray-900 for dropdown options */
+    color: white;
+}
+/* Global Hover Smoothness */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle pulse for active badges */
+.animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Button scaling behavior */
+button:active {
+    transform: scale(0.95);
+}

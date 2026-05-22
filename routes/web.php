@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainingSessionController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,17 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('sessions', TrainingSessionController::class);
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    // ... your other routes ...
+
+    // User Management for Admin
+    Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
+    Route::patch('/admin/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+    Route::get('/trainer/my-clients', [App\Http\Controllers\TrainingSessionController::class, 'trainerClients'])->name('trainer.clients');
 });
 
 require __DIR__.'/auth.php';

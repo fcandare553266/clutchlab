@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,12 +9,19 @@ class TrainingSession extends Model
 {
     use HasFactory;
 
-    // These fields allow the 'store' and 'update' functions to work
-    protected $fillable = ['user_id', 'title', 'description', 'scheduled_at', 'status', 'amount', 'payment_status'];
+    protected $fillable = [
+        'user_id', 
+        'trainer_id', 
+        'title', 
+        'description', 
+        'scheduled_at', 
+        'amount', 
+        'payment_status',
+        'status'
+    ];
 
-    // This links the session to the User who booked it
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    public function user() { return $this->belongsTo(User::class, 'user_id'); }
+    public function trainer() { return $this->belongsTo(User::class, 'trainer_id'); }
 }
+
+

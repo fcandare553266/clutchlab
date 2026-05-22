@@ -18,11 +18,10 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+  protected $fillable = [
+    'name', 'email', 'password', 'role', 
+    'specialization', 'working_hours', 'profile_photo', 
+];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+public function activeTrainees()
+{
+    // A trainer's load only counts sessions that haven't happened yet
+    return $this->hasMany(TrainingSession::class, 'trainer_id')
+                ->where('scheduled_at', '>=', now());
+}
+
+
 }
